@@ -357,6 +357,7 @@ void RTSPServer::RTSPClientSession::incomingRequestHandler1() {
   char urlPreSuffix[RTSP_PARAM_STRING_MAX];
   char urlSuffix[RTSP_PARAM_STRING_MAX];
   char cseq[RTSP_PARAM_STRING_MAX];
+  std::cout<<"RTSP REQUEST:"<<(char*)fRequestBuffer<<std::endl;
   if (!parseRTSPRequestString((char*)fRequestBuffer, fRequestBytesAlreadySeen,
 			      cmdName, sizeof cmdName,
 			      urlPreSuffix, sizeof urlPreSuffix,
@@ -392,6 +393,7 @@ void RTSPServer::RTSPClientSession::incomingRequestHandler1() {
   fprintf(stderr, "sending response: %s", fResponseBuffer);
 #endif
   send(fClientSocket, (char const*)fResponseBuffer, strlen((char*)fResponseBuffer), 0);
+  std::cout<<(char const*)fResponseBuffer<<std::endl;
 
   if (strcmp(cmdName, "SETUP") == 0 && fStreamAfterSETUP) {
     // The client has asked for streaming to commence now, rather than after a
