@@ -1,0 +1,51 @@
+1.修改win32config、WindowsAudioInputDevice\WindowsAudioInputDevice.mak 两个文件
+a)修改TOOLS32变量，注意应当是VC目录，而不是官网上介绍的tools目录。例如我这里是C:\Program Files\Microsoft Visual Studio 9.0\VC
+b)修改LINK_OPTS_0 =		$(linkdebug) msvcirt.lib 一行，将最后一个单词改为msvcrt.lib
+
+2.修改groupSock工程下的两个文件：NetInterface.cpp和Groupsock.cpp
+把#include <strstrea.h>
+改为
+#include <strstream>
+
+3.OK，现在可以用nmake逐个编译各个项目了。
+编译前，注意先运行vsvars32.bat
+如果觉得麻烦，可以用一个脚本文件做这件事。在源码根目录下创建一个脚本文件，内容为：
+REM =====================
+call "C:\Program Files\Microsoft Visual Studio 9.0\VC\vcvarsall.bat"
+
+cd WindowsAudioInputDevice
+echo making WindowsAudioInputDevice...
+nmake /B /f WindowsAudioInputDevice.mak
+
+cd ../liveMedia
+echo making liveMedia...
+nmake /B /f liveMedia.mak
+
+cd ../groupsock
+echo making groupsock...
+nmake /B /f groupsock.mak
+
+cd ../UsageEnvironment
+echo making UsageEnvironment...
+nmake /B /f UsageEnvironment.mak
+
+cd ../BasicUsageEnvironment
+echo making BasicUsageEnvironment...
+nmake /B /f BasicUsageEnvironment.mak
+
+cd ../testProgs
+echo making testProgs...
+nmake /B /f testProgs.mak
+
+cd ../mediaServer
+echo making mediaServer...
+nmake /B /f mediaServer.mak
+
+cd ..
+REM =====================
+修改第一行（知道怎么改吧），然后双击运行即可。
+
+4.如果要调试，首先编译给一个debug版本（修改win32config文件的第一行）
+
+花了一个整天终于编译通过
+后来忽然发现：新建一个工程，将所有文件加入到工程里，一次性编译通过……～@￥@#@#@￥@#￥
