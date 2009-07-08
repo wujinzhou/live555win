@@ -854,6 +854,7 @@ void RTSPServer::RTSPClientSession
     return;
   }
 
+  std::cout<<"ÊÕµ½ÃüÁî£º"<<cmdName<<std::endl;
   if (strcmp(cmdName, "TEARDOWN") == 0) {
     handleCmd_TEARDOWN(subsession, cseq);
   } else if (strcmp(cmdName, "PLAY") == 0) {

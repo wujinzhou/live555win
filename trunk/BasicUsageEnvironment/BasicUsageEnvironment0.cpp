@@ -77,7 +77,7 @@ void BasicUsageEnvironment0::appendToResultMsg(MsgString msg) {
     msgLength = spaceAvailable-1;
   }
 
-  std::cout<<"appendToResultMsg"<<(char *)msg<<std::endl;
+  std::cout<<"BasicUsageEnvironment0::appendToResultMsg : "<<(char *)msg<<std::endl;
   memmove(curPtr, (char*)msg, msgLength);
   fCurBufferSize += msgLength;
   fResultMsgBuffer[fCurBufferSize] = '\0';
