@@ -10,3 +10,17 @@ INCLUDEPATH += .
 
 # Input
 SOURCES += main.cpp
+QT += network
+
+CONFIG( debug,debug|release ){
+AV_DEST_BIN_DIR = $$AV_BASE_DIR/bin/server/debug
+OBJECTS_DIR = $$AV_BASE_DIR/tmp/server/debug
+MOC_DIR = $$AV_BASE_DIR/tmp/server/debug
+RCC_DIR = $$AV_BASE_DIR/tmp/server/debug
+}
+else{
+AV_DEST_BIN_DIR = $$AV_BASE_DIR/bin/server/release
+OBJECTS_DIR = $$AV_BASE_DIR/tmp/server/release
+MOC_DIR = $$AV_BASE_DIR/tmp/server/release
+RCC_DIR = $$AV_BASE_DIR/tmp/server/release
+}
