@@ -10,6 +10,20 @@ INCLUDEPATH += .
 
 HEADERS += THttp.h
 SOURCES += main.cpp THttp.cpp
+ 
 
-QT +=   network
 
+QT += network
+
+CONFIG( debug,debug|release ){
+AV_DEST_BIN_DIR = $$AV_BASE_DIR/bin/client/debug
+OBJECTS_DIR = $$AV_BASE_DIR/tmp/client/debug
+MOC_DIR = $$AV_BASE_DIR/tmp/client/debug
+RCC_DIR = $$AV_BASE_DIR/tmp/client/debug
+}
+else{
+AV_DEST_BIN_DIR = $$AV_BASE_DIR/bin/client/release
+OBJECTS_DIR = $$AV_BASE_DIR/tmp/client/release
+MOC_DIR = $$AV_BASE_DIR/tmp/client/release
+RCC_DIR = $$AV_BASE_DIR/tmp/client/release
+}

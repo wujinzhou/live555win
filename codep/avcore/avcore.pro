@@ -16,9 +16,27 @@ SOURCES += AvCore.cpp  main.cpp mytest.cpp
 win32{
 FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
 LIBS += $$FFMPEG_PATH/lib/avformat.lib
+FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
+LIBS += $$FFMPEG_PATH/lib/avcodec.lib
 }
 
 unix{
 FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
 LIBS += -L$$FFMPEG_PATH/lib -lavformat
+FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
+LIBS += -L$$FFMPEG_PATH/lib -lavcodec
+}
+ 
+
+CONFIG( debug,debug|release ){
+AV_DEST_BIN_DIR = $$AV_BASE_DIR/bin/avcore/debug
+OBJECTS_DIR = $$AV_BASE_DIR/tmp/avcore/debug
+MOC_DIR = $$AV_BASE_DIR/tmp/avcore/debug
+RCC_DIR = $$AV_BASE_DIR/tmp/avcore/debug
+}
+else{
+AV_DEST_BIN_DIR = $$AV_BASE_DIR/bin/avcore/release
+OBJECTS_DIR = $$AV_BASE_DIR/tmp/avcore/release
+MOC_DIR = $$AV_BASE_DIR/tmp/avcore/release
+RCC_DIR = $$AV_BASE_DIR/tmp/avcore/release
 }
