@@ -15,15 +15,13 @@ SOURCES += AvCore.cpp  main.cpp mytest.cpp
 
 win32{
 FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
-LIBS += $$FFMPEG_PATH/lib/avformat.lib
-FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
+LIBS += $$FFMPEG_PATH/lib/avformat.lib 
 LIBS += $$FFMPEG_PATH/lib/avcodec.lib
 }
 
 unix{
 FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
-LIBS += -L$$FFMPEG_PATH/lib -lavformat
-FFMPEG_PATH = $$AV_BASE_DIR/include/ffmpeg
+LIBS += -L$$FFMPEG_PATH/lib -lavformat 
 LIBS += -L$$FFMPEG_PATH/lib -lavcodec
 }
  
