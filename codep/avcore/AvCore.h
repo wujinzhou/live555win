@@ -7,7 +7,7 @@ public:
 	AvCore(void);
 	~AvCore(void);
 
-	virtual	bool encoder(char* inFile,char* outFiles,char* encoderargs) ; 
+	virtual	bool encoder(char* inFile,char* outFiles,int ibegin,int iDuration,char*  size,int b,char* ffpreset,int ithreads )  ; 
 	virtual bool start() ;
 	virtual bool pause() ;
 	virtual bool stop() ;
