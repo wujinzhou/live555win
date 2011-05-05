@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include "os_support.h"
 #include "url.h"
-
+#include "file.h"
 FUN_fseek  td_fseek = fseek;
 FUN_fread  td_fread = fread;
 FUN_fopen  td_fopen = fopen;
