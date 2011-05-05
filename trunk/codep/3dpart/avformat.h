@@ -200,17 +200,6 @@ void av_metadata_free(AVMetadata **m);
 int av_get_packet(AVIOContext *s, AVPacket *pkt, int size);
 
 
-typedef FILE * (*FUN_fopen)(const char * _Filename,const char * _Mode);
-typedef int    (*FUN_fseek)(FILE *stream,long offset,int whence);
-typedef size_t (*FUN_fread)(FILE * _File, void * _DstBuf,  size_t _Count);
-typedef  long  (*FUN_ftell)(FILE * _File);
-typedef int    (*FUN_fclose)(FILE * _File);
-typedef int    (*FUN_stat) (const char*, struct stat*);
-typedef  int    (*FUN_fstat) (int, struct stat*);
-
-
-/* standard file protocol */
- int setFileCallBack(FUN_fopen o, FUN_fseek  s,FUN_fread r,FUN_ftell t,FUN_fclose c,FUN_stat st,FUN_fstat fst);
 
 /**
  * Read data and append it to the current content of the AVPacket.
