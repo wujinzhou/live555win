@@ -19,7 +19,8 @@ extern "C" {
 AvCore::AvCore(void)
 :m_Duration(0)
 {
-	av_register_all();
+	//av_register_all();
+ 
 
 }
 AvCore::~AvCore(void)
@@ -28,20 +29,27 @@ AvCore::~AvCore(void)
 }
 bool AvCore::encoder(char* inFile,char* outFiles,int ibegin,int iDuration,char*  size,int b,char* ffpreset,int ithreads ) 
 {
-	QProcess *process = new QProcess;  
+
+	QLibrary myLib("L:\\Projects\\svn\\codep\\avcore\\avcore.exe");
+	av_setFileCallBack = (FUN_setFileCallBack) myLib.resolve("setFileCallBack"); 
+	av_ffmpegMain = (FUNC_ffmpegMain) myLib.resolve("ffmpegMain");  
 	{
-		QString arg = QString("ffmpeg.exe -threads %1  -ss %2 -t %3 -i %4  -f  flv  -vcodec libx264 -s %5 -fpre %6  %7")\
+		QString arg = QString("ffmpeg.exe -threads %1 -ss %2 -t %3 -i %4 -f flv -vcodec libx264 -s %5 -fpre %6 %7 r")\
 			.arg(ithreads).arg(ibegin).arg(iDuration).arg(inFile).arg(size).arg(ffpreset).arg(outFiles);
 
 		QStringList str;
-		str << "";
-		process->start(arg);
-		process->waitForFinished(30*60*1000);
-	}
-	delete process;
-	process = NULL;
+		str = arg.split(" ");
+		char** argc= new char*[str.size()];
+		QByteArray *  pdata = new QByteArray[str.size()];
+		for (int i = 0;i<str.size();i++)
+		{
+			pdata[i] = str.at(i).toLatin1();
+			argc[i]  = pdata[i].data();
+			qDebug("%s",argc[i]);
+		}
+		av_ffmpegMain(str.size(),argc);
 
-
+	}  
 	return true;
 }
 bool AvCore::start() 
@@ -92,7 +100,7 @@ bool AvCore::combination(int fileCount,char* inFiles[],char* originalFile,char* 
 		infiles += QString(" "); 
 	}
 
-	QString arg = QString("mencoder.exe" -ovc copy  -nosound  %1  %2 -o %3 ").arg(inFiles[0]).arg(inFiles[1]).arg(outFile);
+	QString arg = QString("mencoder.exe -ovc copy  -nosound  %1  %2 -o %3 ").arg(inFiles[0]).arg(inFiles[1]).arg(outFile);
 
 	QStringList str;
 	str << "";
