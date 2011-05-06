@@ -30,30 +30,55 @@
 #include <stdlib.h>
 #include "os_support.h"
 #include "url.h"
-#include "file.h"
-FUN_fseek  td_fseek = fseek;
-FUN_fread  td_fread = fread;
-FUN_fopen  td_fopen = fopen;
-FUN_ftell  td_ftell = ftell;
-FUN_fclose td_fclose = fclose;
+#include "avfile.h"
+
+FUN_fseek  td_fseek = lseek;
+FUN_fread  td_fread = read;
+FUN_fwrite td_fwrite = write;
+FUN_fopen  td_fopen = open;
+FUN_ftell  td_ftell = tell;
+FUN_fclose td_fclose = close;
 FUN_stat    td_stat = stat;
-FUN_fstat   td_fstat=fstat;
+FUN_fstat   td_fstat= fstat; 
+/* standard file protocol */
 
 /* standard file protocol */
- int setFileCallBack(FUN_fopen o, FUN_fseek  s,FUN_fread r,FUN_ftell t,FUN_fclose c,FUN_stat st,FUN_fstat fst)
+int setFileCallBack(FUN_fopen o,FUN_fwrite w,FUN_fread r, FUN_fseek  s,FUN_ftell t,FUN_fclose c,FUN_stat Fstat,FUN_fstat fst)
 {
-td_fopen = o;
-td_fseek = s;	
-td_fread = r;	
-td_ftell = t;	
-td_fclose = c;
-td_stat = st;
-td_fstat = fst;
+	if (NULL != o)
+	{
+		td_fopen = o;
+	}
+	if (NULL != w)
+	{
+		td_fwrite = w;
+	} 
+	if (NULL !=  r)
+	{
+		td_fread = r;
+	} 
+	if (NULL !=  s)
+	{
+		td_fseek = s;
+	} 
+	if (NULL != t )
+	{
+		td_ftell = t;	
+	} 
+	if (NULL !=  c)
+	{
+		td_fclose = c;
+	} 
+	if (NULL != Fstat )
+	{
+		td_stat = Fstat;
+	} 
+	if (NULL != fst )
+	{
+		td_fstat = fst;
 
+	}  	
 }
-
-/* standard file protocol */
-
 static int file_read(URLContext *h, unsigned char *buf, int size)
 {
     int fd = (intptr_t) h->priv_data;
@@ -63,7 +88,7 @@ static int file_read(URLContext *h, unsigned char *buf, int size)
 static int file_write(URLContext *h, const unsigned char *buf, int size)
 {
     int fd = (intptr_t) h->priv_data;
-    return fwrite(fd, buf, size);
+    return write(fd, buf, size);
 }
 
 static int file_get_handle(URLContext *h)
@@ -90,7 +115,7 @@ static int file_open(URLContext *h, const char *filename, int flags)
 #ifdef O_BINARY
     access |= O_BINARY;
 #endif
-    fd = open(filename, access, 0666);
+    fd = td_fopen(filename, access, 0666);
     if (fd == -1)
         return AVERROR(errno);
     h->priv_data = (void *) (intptr_t) fd;
@@ -174,5 +199,5 @@ URLProtocol ff_pipe_protocol = {
     .url_get_file_handle = file_get_handle,
     .url_check           = file_check,
 };
-
+ 
 #endif /* CONFIG_PIPE_PROTOCOL */
