@@ -1,0 +1,65 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HttpUploader", "HttpUploader.vcproj", "{F83D5027-FD1E-435A-897E-8A1EC8AE3219}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HttpBlockDownloader", "..\..\Downloader\HttpBlockDownloader\HttpBlockDlownloader.vcproj", "{9DF1CF41-F73E-447E-9B9F-36E2AE439F09}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UploaderTest", "..\UploaderTest\UploaderTest.vcproj", "{A00572F5-FDF0-43EF-84DA-3430D0694AB0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219} = {F83D5027-FD1E-435A-897E-8A1EC8AE3219}
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219} = {F83D5027-FD1E-435A-897E-8A1EC8AE3219}
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219} = {F83D5027-FD1E-435A-897E-8A1EC8AE3219}
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219} = {F83D5027-FD1E-435A-897E-8A1EC8AE3219}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UdtUploader", "..\UdtUploader\UdtUploader.vcproj", "{645B1B97-1353-436D-ADD9-8AFF025D5F2B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "udt", "..\..\TUDT\win\udt.vcproj", "{D84D100A-7C21-4CCB-B16E-0FB37137C16C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TStunClient", "..\..\TUDT\TStunClient\TStunClient.vcproj", "{4CC7C715-B54E-4D2C-8223-4F6C719009DE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TStunServ", "..\..\TUDT\TStunServ\TStunServ.vcproj", "{EACBB72C-4AC0-4352-ACE2-334E8D7F6749}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TDownloader", "..\..\Downloader\TDownloader\TDlownloader.vcproj", "{BF3472E7-9CC1-4FBB-8B51-4582E9B5CE63}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlockDownloadUdp", "..\..\BlockDownloadUdp\BlockDownloadUdp.vcproj", "{7CB6638B-9711-47FC-9B38-046CAF4C50C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219}.Debug|Win32.Build.0 = Debug|Win32
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219}.Release|Win32.ActiveCfg = Release|Win32
+		{F83D5027-FD1E-435A-897E-8A1EC8AE3219}.Release|Win32.Build.0 = Release|Win32
+		{9DF1CF41-F73E-447E-9B9F-36E2AE439F09}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9DF1CF41-F73E-447E-9B9F-36E2AE439F09}.Release|Win32.ActiveCfg = Release|Win32
+		{A00572F5-FDF0-43EF-84DA-3430D0694AB0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A00572F5-FDF0-43EF-84DA-3430D0694AB0}.Debug|Win32.Build.0 = Debug|Win32
+		{A00572F5-FDF0-43EF-84DA-3430D0694AB0}.Release|Win32.ActiveCfg = Release|Win32
+		{A00572F5-FDF0-43EF-84DA-3430D0694AB0}.Release|Win32.Build.0 = Release|Win32
+		{645B1B97-1353-436D-ADD9-8AFF025D5F2B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{645B1B97-1353-436D-ADD9-8AFF025D5F2B}.Release|Win32.ActiveCfg = Release|Win32
+		{D84D100A-7C21-4CCB-B16E-0FB37137C16C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D84D100A-7C21-4CCB-B16E-0FB37137C16C}.Debug|Win32.Build.0 = Debug|Win32
+		{D84D100A-7C21-4CCB-B16E-0FB37137C16C}.Release|Win32.ActiveCfg = Release|Win32
+		{D84D100A-7C21-4CCB-B16E-0FB37137C16C}.Release|Win32.Build.0 = Release|Win32
+		{4CC7C715-B54E-4D2C-8223-4F6C719009DE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4CC7C715-B54E-4D2C-8223-4F6C719009DE}.Debug|Win32.Build.0 = Debug|Win32
+		{4CC7C715-B54E-4D2C-8223-4F6C719009DE}.Release|Win32.ActiveCfg = Release|Win32
+		{4CC7C715-B54E-4D2C-8223-4F6C719009DE}.Release|Win32.Build.0 = Release|Win32
+		{EACBB72C-4AC0-4352-ACE2-334E8D7F6749}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EACBB72C-4AC0-4352-ACE2-334E8D7F6749}.Release|Win32.ActiveCfg = Release|Win32
+		{BF3472E7-9CC1-4FBB-8B51-4582E9B5CE63}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BF3472E7-9CC1-4FBB-8B51-4582E9B5CE63}.Release|Win32.ActiveCfg = Release|Win32
+		{7CB6638B-9711-47FC-9B38-046CAF4C50C7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7CB6638B-9711-47FC-9B38-046CAF4C50C7}.Debug|Win32.Build.0 = Debug|Win32
+		{7CB6638B-9711-47FC-9B38-046CAF4C50C7}.Release|Win32.ActiveCfg = Release|Win32
+		{7CB6638B-9711-47FC-9B38-046CAF4C50C7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
