@@ -5,9 +5,9 @@
 #include <map>
 #include <windows.h>
 using namespace std;
-
-#include "RaProtocolStruct.h"
-#include "RaProtoValue.h"
+//
+//#include "RaProtocolStruct.h"
+//#include "RaProtoValue.h"
 #include "debug.h"
 #include "sysdata.h"
 #include "httppost.h"
@@ -24,8 +24,15 @@ using namespace std;
 //typedef int    (*FUN_stat) (const char*, struct stat*);
 //typedef  int   (*FUN_fstat) (int, struct stat*);
 
+const string GetExePath(){
+	char szFilePath[MAX_PATH + 1]={0};
+	GetModuleFileName(NULL, szFilePath, MAX_PATH);
+	(strrchr(szFilePath, ('\\')))[1] = 0;//删除文件名，只获得路径字串
+	//CString str_url = szFilePath; //例如str_url==e:\program\Debug\;
+	return szFilePath;
+}
 
-const string strServDir = "F:\\svn_mindmapdir\\Program\\gsdown_backup\\gsdown_090703\\bin\\debug\\website";
+const string strServDir = GetExePath() + "website";
 
 UploadHandler::UploadHandler(HttpUploader *pUploader)
 {	
@@ -209,19 +216,19 @@ void UploadHandler::handle( SP_HttpRequest * request, SP_HttpResponse * response
 void UploadHandler::ReturnEmptyBlock( SP_HttpResponse * response, const MD5 &fid, int iPos)
 {
 	//构造数据包
-	int iTotalReplyPackLen = sizeof(RaPack) +sizeof(RA_GetData_Ret);
-	boost::shared_ptr<RaPack> pPackReply((RaPack *)malloc(iTotalReplyPackLen),free);
-	pPackReply->byVersion = c_byVersion;
-	pPackReply->dwCMDType = RA_C2C_GetData_Ret;
-	pPackReply->dwProtoFlag = c_byProtoType_C2C;
-	pPackReply->usLen = iTotalReplyPackLen;
-	pPackReply->dwReceiverId = 0;
-	pPackReply->dwSenderId = 0;
+	//int iTotalReplyPackLen = sizeof(RaPack) +sizeof(RA_GetData_Ret);
+	//boost::shared_ptr<RaPack> pPackReply((RaPack *)malloc(iTotalReplyPackLen),free);
+	//pPackReply->byVersion = c_byVersion;
+	//pPackReply->dwCMDType = RA_C2C_GetData_Ret;
+	//pPackReply->dwProtoFlag = c_byProtoType_C2C;
+	//pPackReply->usLen = iTotalReplyPackLen;
+	//pPackReply->dwReceiverId = 0;
+	//pPackReply->dwSenderId = 0;
 
-	RA_GetData_Ret *pGetDataRet = (RA_GetData_Ret *)pPackReply->ucData;
-	pGetDataRet->mdChannelHash = fid;
-	pGetDataRet->dwPos = iPos;
-	pGetDataRet->dwDataLen = 0;
+	//RA_GetData_Ret *pGetDataRet = (RA_GetData_Ret *)pPackReply->ucData;
+	//pGetDataRet->mdChannelHash = fid;
+	//pGetDataRet->dwPos = iPos;
+	//pGetDataRet->dwDataLen = 0;
 
-	response->appendContent((char *)pPackReply.get(),iTotalReplyPackLen);
+	//response->appendContent((char *)pPackReply.get(),iTotalReplyPackLen);
 }
