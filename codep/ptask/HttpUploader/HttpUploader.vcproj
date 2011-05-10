@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="gb2312"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9.00"
 	Name="HttpUploader"
 	ProjectGUID="{F83D5027-FD1E-435A-897E-8A1EC8AE3219}"
 	RootNamespace="BufferMap"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -40,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;./SPServer;../../common/thread;../../common/"
+				AdditionalIncludeDirectories="../include;./SPServer;../common/thread;../common/"
 				PreprocessorDefinitions="HTTPUPLOADER_EXPORTS;WIN32"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
@@ -58,12 +59,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="spserver.lib ws2_32.lib MSVCRTD.LIB Iphlpapi.lib curl/libcurl.lib"
-				OutputFile="../../../bin/debug/$(ProjectName).dll"
-				AdditionalLibraryDirectories="../../../lib/debug/"
+				OutputFile="../bin/debug/$(ProjectName).dll"
+				AdditionalLibraryDirectories="../lib/debug/"
 				IgnoreDefaultLibraryNames="libc.lib,libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
-				ImportLibrary="../../../lib/debug/$(ProjectName).lib"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../lib/debug/$(ProjectName).lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -82,9 +85,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -133,6 +133,8 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\Release\$(ProjectName).dll"
 				AdditionalLibraryDirectories="../../../lib/release/"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				ImportLibrary="../../lib/Release/$(TargetName).lib"
 			/>
 			<Tool
@@ -152,9 +154,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -190,15 +189,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\Thread\win32\jmutex.cpp"
+				RelativePath="..\Common\Thread\win32\jmutex.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\Thread\win32\jthread.cpp"
+				RelativePath="..\Common\Thread\win32\jthread.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\Common\MD5.cpp"
+				RelativePath="..\Common\MD5.cpp"
 				>
 			</File>
 			<File
@@ -260,6 +259,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Common\Thread\jmutex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Common\Thread\jmutexautolock.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Common\Thread\jthread.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Common\md5.h"
 				>
 			</File>
@@ -302,6 +313,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath="..\UploaderTest\UploaderTest.vcproj"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
