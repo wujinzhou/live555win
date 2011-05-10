@@ -33,5 +33,6 @@ public:
 		string &curr_task_id, string &curr_task_name,string &curr_task_state, int i_waiting_task_count);
 	string ToJson();
 private:
-	map<string,NodeClient> m_mapClients;
+	typedef map<string,NodeClient> T_mapClient;
+	T_mapClient m_mapClients;
 };

@@ -35,6 +35,9 @@ border-top:1px solid #CCC;
 #btnStart{
 width:200px;
 }
-#btnFile{
+#inputFile{
 width:300px;
+}
+#span_res{
+color:red;
 }
