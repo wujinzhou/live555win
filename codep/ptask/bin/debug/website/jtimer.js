@@ -1,17 +1,39 @@
-var OnTimer = function(){
-
-jQuery.getJSON("/status",
-		{"name":"mem"},
-		function(data) {
+var updatestate = function(){
+    return;
+    jQuery.getJSON("/status",
+        {"name":"mem"},
+        function(data) {
             $("#mem").html("total:" + data[0] +
                 " <font color=red>used:" + data[1] +
-                "</font>(" + data[2] + "%)");
+                "M</font>(" + data[2] + "%)");
+        });
+};
+var onbrowseclick = function(){
+    alert("此功能暂未实现");
+};
+
+//启动任务的url是/addtask?taskid=***&type=***&name=***&param1=***&&param2=***
+var onstartclick = function(){
+    var path = $("#inputFile").val();
+    if(path.length<=0){
+        alert("请输入待转码文件地址。");
+        return;
+    }
+    jQuery.getJSON("/addtask",
+        {"taskid":0,
+        "type":"hash",
+        "name":path,
+        "param1":path,
+        "param2":0
+        },
+        function(data) {
+            $("#span_res").html(data[3]);
         });
 }
 $(document).ready(function(){
+    $("#btnBrowse").click(onbrowseclick);
+    $("#btnStart").click(onstartclick);
     
-    setInterval("OnTimer();",1000); 
-    $("#btnBrowse").click(function(){
-    alert("eh");
-    });
+    //定时更新页面状态
+    setInterval(updatestate,1000); 
 });

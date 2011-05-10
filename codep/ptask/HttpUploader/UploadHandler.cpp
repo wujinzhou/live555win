@@ -12,8 +12,9 @@ using namespace std;
 #include "sysdata.h"
 #include "httppost.h"
 #include "nodeclient.h"
-
 #include "mime.h"
+#include "NodeClient.h"
+
 //
 //typedef FILE * (*FUN_fopen)(const char*, int, ...);
 //typedef size_t (*FUN_fread)(int, void*, unsigned int);
@@ -28,7 +29,6 @@ const string GetExePath(){
 	char szFilePath[MAX_PATH + 1]={0};
 	GetModuleFileName(NULL, szFilePath, MAX_PATH);
 	(strrchr(szFilePath, ('\\')))[1] = 0;//删除文件名，只获得路径字串
-	//CString str_url = szFilePath; //例如str_url==e:\program\Debug\;
 	return szFilePath;
 }
 
@@ -63,7 +63,7 @@ void RespJson(SP_HttpResponse * response,const string &msg){
 FILE *fp;
 void findFile(const char filePath[], string &strRes )
 {
-	char szFind[MAX_PATH];//这是要找的
+	char szFind[MAX_PATH];
 	WIN32_FIND_DATA FindFileData;
 	HANDLE hFind;
 	char szFile[MAX_PATH];
@@ -100,13 +100,22 @@ void findFile(const char filePath[], string &strRes )
 //请求的格式如下："/getFile?id=%d&fid=%s&pos=%d&size=%d";
 void UploadHandler::handle( SP_HttpRequest * request, SP_HttpResponse * response )
 {
-
 	string url = request->getURI();
+	cout<<"URL:"<<request->getURL()<<endl;
 	if(std::string("/")==url){
 		url = "/index.htm"; //url重定向
 	}
 	else if(std::string("/nodestatus")==url){
 		//addr、port、currtaskid、currtaskname、currtaskstate、waitingtaskcount等。
+		return;
+	}
+	else if(std::string("/addtask")==url){
+		string type = request->getParamValue("type");
+		string taskname = request->getParamValue("name");
+
+		NodeClientMap::UpdateNode(request->getClientIP(),"0","0",)
+		response->appendContent("['addtask',0,1234,'task added!']");
+		return;
 	}
 	else if('/'==*url.rbegin()){
 		string strRes;

@@ -23,6 +23,7 @@ TaskStatusReportThread::~TaskStatusReportThread(void)
 void *TaskStatusReportThread::Thread(){
 	this->ThreadStarted();
 
+	return NULL;
 	while(true){
 		std::string strApiUrl = "http://localhost:8080/status";
 		httpPost hp(strApiUrl.c_str());
