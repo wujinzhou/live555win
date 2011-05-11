@@ -113,8 +113,13 @@ void UploadHandler::handle( SP_HttpRequest * request, SP_HttpResponse * response
 		string type = request->getParamValue("type");
 		string taskname = request->getParamValue("name");
 
-		NodeClientMap::UpdateNode(request->getClientIP(),"0","0",)
+		NodeClientMap::UpdateNode(request->getClientIP(),"0","",taskname,"",0);
 		response->appendContent("['addtask',0,1234,'task added!']");
+		return;
+	}
+	else if(url=="/getstatus"){
+		string status = NodeClientMap::ToJson();
+		response->appendContent(status.c_str());
 		return;
 	}
 	else if('/'==*url.rbegin()){
