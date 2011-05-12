@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="gb2312"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="8.00"
 	Name="HttpUploader"
 	ProjectGUID="{F83D5027-FD1E-435A-897E-8A1EC8AE3219}"
 	RootNamespace="BufferMap"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -64,8 +63,6 @@
 				IgnoreDefaultLibraryNames="libc.lib,libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="../lib/debug/$(ProjectName).lib"
 			/>
 			<Tool
@@ -85,6 +82,9 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -133,8 +133,6 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\Release\$(ProjectName).dll"
 				AdditionalLibraryDirectories="../../../lib/release/"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="../../lib/Release/$(TargetName).lib"
 			/>
 			<Tool
@@ -154,6 +152,9 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -178,6 +179,10 @@
 			</File>
 			<File
 				RelativePath=".\ErrorCode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\GFunction.cpp"
 				>
 			</File>
 			<File
@@ -217,6 +222,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Task.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\TaskStatusReportThread.cpp"
 				>
 			</File>
@@ -240,6 +249,10 @@
 			</File>
 			<File
 				RelativePath=".\ErrorCode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GFunction.h"
 				>
 			</File>
 			<File
@@ -283,19 +296,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\Include\RaProtocolStruct.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Include\RaProtoValue.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ServThread.h"
 				>
 			</File>
 			<File
 				RelativePath=".\SysData.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Task.h"
 				>
 			</File>
 			<File
@@ -313,10 +322,6 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
-		<File
-			RelativePath="..\UploaderTest\UploaderTest.vcproj"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

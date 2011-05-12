@@ -23,15 +23,14 @@ TaskStatusReportThread::~TaskStatusReportThread(void)
 void *TaskStatusReportThread::Thread(){
 	this->ThreadStarted();
 
-	return NULL;
 	while(true){
-		std::string strApiUrl = "http://localhost:8080/status";
+		std::string strApiUrl = m_disturl + "/status";
 		httpPost hp(strApiUrl.c_str());
 		hp.init();
 		hp.doGet();
 		std::string strRes = hp.getResult();
 		std::cout<<strRes<<std::endl;
-		Sleep(10*1000);
+		Sleep(5*1000);
 	}
 }
 void TaskStatusReportThread::updatecurrtask(const string &taskid,const string &taskname, const string &taskstate){
@@ -42,4 +41,10 @@ void TaskStatusReportThread::updatecurrtask(const string &taskid,const string &t
 }
 void TaskStatusReportThread::updatewaitingtaskcount(int icount){
 	m_itaskcount = icount;
+}
+
+bool TaskStatusReportThread::setMainNode( const string &mainnode )
+{
+	m_disturl = mainnode;
+	return true;
 }
