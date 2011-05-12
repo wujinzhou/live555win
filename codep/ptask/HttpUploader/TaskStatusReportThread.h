@@ -13,6 +13,7 @@ public:
 	TaskStatusReportThread(const string &disturl,const string &baseinfo);
 	virtual void *Thread();
 
+	bool setMainNode(const string &mainnode);
 	void updatecurrtask(const string &taskid,const string &taskname, const string &taskstate);
 	void updatewaitingtaskcount(int icount);
 

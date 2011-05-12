@@ -14,6 +14,8 @@ using namespace std;
 #include "nodeclient.h"
 #include "mime.h"
 #include "NodeClient.h"
+#include "Task.h"
+#include "GFunction.h"
 
 //
 //typedef FILE * (*FUN_fopen)(const char*, int, ...);
@@ -113,12 +115,17 @@ void UploadHandler::handle( SP_HttpRequest * request, SP_HttpResponse * response
 		string type = request->getParamValue("type");
 		string taskname = request->getParamValue("name");
 
-		NodeClientMap::UpdateNode(request->getClientIP(),"0","",taskname,"",0);
-		response->appendContent("['addtask',0,1234,'task added!']");
+		//NodeClientMap::UpdateNode(request->getClientIP(),"0","",taskname,"",0);
+		Task &task = Task::CreateTask(0,taskname,"",0,"");
+		string strRes = string("['addtask',0,") + GFunction::toString(task.id) + ",'task added!']";
+		response->appendContent(strRes.c_str());
 		return;
 	}
-	else if(url=="/getstatus"){
-		string status = NodeClientMap::ToJson();
+	else if(url=="/setmainnode"){
+
+	}
+	else if(url=="/taskstatus"){
+		string status = Task::toJson();
 		response->appendContent(status.c_str());
 		return;
 	}

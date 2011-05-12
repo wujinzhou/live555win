@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="gb2312"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="8.00"
 	Name="UploaderTest"
 	ProjectGUID="{A00572F5-FDF0-43EF-84DA-3430D0694AB0}"
 	RootNamespace="UploaderTest"

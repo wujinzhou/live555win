@@ -40,7 +40,7 @@ public:
 	//}
 	static void UpdateNode(const string &addr,const string &port, 
 		const string &curr_task_id, const string &curr_task_name,const string &curr_task_state, int i_waiting_task_count);
-	static string ToJson();
+	static string toJson();
 private:
 	typedef map<const string,NodeClient> T_mapClient;
 	static T_mapClient m_mapClients;

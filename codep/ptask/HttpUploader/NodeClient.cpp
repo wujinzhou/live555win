@@ -3,6 +3,7 @@
 #include <map>
 using namespace std;
 
+#include "Gfunction.h"
 
 NodeClient::NodeClient(const string &addr,const string &port)
 {
@@ -22,10 +23,6 @@ void NodeClient::Update(const string &curr_task_id, const string &curr_task_name
 	m_iWaitingtaskcount = i_waiting_task_count;
 }
 
-string toString(int i){
-	char buf[16];
-	return itoa(i,buf,10);
-}
 std::string NodeClient::toJson()
 {
 	return (string)"['" + m_strAddr + "','"
@@ -33,7 +30,7 @@ std::string NodeClient::toJson()
 		+ m_strCurrtaskid + "','"
 		+ m_strCurrtaskname + "','"
 		+ m_strCurrtaskstate + "','"
-		+ toString(m_iWaitingtaskcount) + "']";
+		+ GFunction::toString(m_iWaitingtaskcount) + "']";
 }
 void NodeClientMap::UpdateNode(const string &addr,const string &port, 
 	const string &curr_task_id, const string &curr_task_name,const string &curr_task_state, int i_waiting_task_count)
@@ -47,7 +44,7 @@ void NodeClientMap::UpdateNode(const string &addr,const string &port,
 	NodeClient &node = (*it).second;
 	node.Update(curr_task_id,curr_task_name,curr_task_state,i_waiting_task_count);
 }
-string NodeClientMap::ToJson(){
+string NodeClientMap::toJson(){
 	string strJson = "[";
 	T_mapClient::iterator it = m_mapClients.begin();
 	for (;it!=m_mapClients.end();it++)

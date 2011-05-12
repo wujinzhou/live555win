@@ -1,5 +1,15 @@
 var updatestate = function(){
-    return;
+    jQuery.getJSON("/taskstatus",
+        {},
+        function(data) {
+            var strData ="";
+            for(var i=0;i<data.length;i++){
+                strData += "<div>id:" + data[i][0] +
+                    " type:" + data[i][1] +
+                    " path:" + data[i][2] + "</div>";
+            }
+            $("#div_task").html(strData)
+        });
     jQuery.getJSON("/status",
         {"name":"mem"},
         function(data) {
@@ -11,6 +21,24 @@ var updatestate = function(){
 var onbrowseclick = function(){
     alert("此功能暂未实现");
 };
+
+var onsetmainnode = function(){
+    var path = $("#inputMainNode").val();
+    if(path.length<=0){
+        alert("请输入主节点地址。");
+        return;
+    }
+    jQuery.getJSON("/setmainnode",
+        {"path":path},
+        function(data) {
+            if("succeed"==data[0]){
+                alert("设置成功！");
+            }
+            else{
+                alert(data[1]);
+            }
+        });
+}
 
 //启动任务的url是/addtask?taskid=***&type=***&name=***&param1=***&&param2=***
 var onstartclick = function(){
@@ -33,6 +61,7 @@ var onstartclick = function(){
 $(document).ready(function(){
     $("#btnBrowse").click(onbrowseclick);
     $("#btnStart").click(onstartclick);
+    $("#btnSetMainNode").click(onsetmainnode);
     
     //定时更新页面状态
     setInterval(updatestate,1000); 
