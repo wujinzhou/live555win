@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="HttpUploader"
+	Name="HttpServer"
 	ProjectGUID="{F83D5027-FD1E-435A-897E-8A1EC8AE3219}"
 	RootNamespace="BufferMap"
 	>
@@ -16,8 +16,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="../../../temp/$(ProjectName)/Debug"
-			IntermediateDirectory="../../../temp/$(ProjectName)/Debug"
+			OutputDirectory="../temp/$(ProjectName)/Debug"
+			IntermediateDirectory="../temp/$(ProjectName)/Debug"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
