@@ -27,7 +27,7 @@ void testHandler(SP_HttpRequest * request, SP_HttpResponse * response){
 	return;
 }
 
-void handlerMain(SP_HttpRequest * request, SP_HttpResponse * response){
+void handlerTestIp(SP_HttpRequest * request, SP_HttpResponse * response){
 	string strResp = (string)"<html><title>aaa</title><body><font color=red>hello,girl!" +
 		request->getClientIP() +
 		"</font></body></html>";
@@ -78,7 +78,7 @@ bool TestHTTP()
 	HttpUploader uploader;
 	uploader.StartServ();
 	uploader.AddUrlHandler("/fetch",testHandler);
-	uploader.AddUrlHandler("/test",handlerMain);
+	uploader.AddUrlHandler("/test",handlerTestIp);
 	uploader.AddUrlHandler("/addtask",handlerAddTask);
 	uploader.AddUrlHandler("/getstatus",handlerGetStatus);
 	uploader.AddUrlHandler("/status",handlerStatus);
