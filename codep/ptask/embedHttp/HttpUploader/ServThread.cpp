@@ -18,7 +18,7 @@ private:
 };
 
 ServThread::ServThread(HttpUploader *pUploader)
-:m_threadTaskReport("http://localhost:8080/status","")
+//:m_threadTaskReport("http://localhost:8080/status","")
 {
 	m_pUploader = pUploader;
 
@@ -27,13 +27,13 @@ ServThread::ServThread(HttpUploader *pUploader)
 
 ServThread::~ServThread(void)
 {
-	m_threadTaskReport.Kill();
+	//m_threadTaskReport.Kill();
 }
 
 void * ServThread::Thread()
 {
 	ThreadStarted();
-	m_threadTaskReport.Start();
+	//m_threadTaskReport.Start();
 
 	int port = 8080, maxThreads = 10;
 	const char * serverType = "hahs";

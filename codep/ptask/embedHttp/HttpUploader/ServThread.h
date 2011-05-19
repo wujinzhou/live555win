@@ -2,7 +2,7 @@
 #include "../Common/Thread/jthread.h"
 
 #include "spiocpserver.hpp"
-#include "TaskStatusReportThread.h"
+//#include "TaskStatusReportThread.h"
 
 class HttpUploader;
 
@@ -19,5 +19,5 @@ public:
 private:
 	HttpUploader *m_pUploader;
 	SP_IocpServer *m_pSpServer;
-	TaskStatusReportThread m_threadTaskReport;
+	//TaskStatusReportThread m_threadTaskReport;
 };

@@ -113,126 +113,56 @@ void UploadHandler::handle( SP_HttpRequest * request, SP_HttpResponse * response
 	if(std::string("/")==url){
 		url = "/index.htm"; //url重定向
 	}
-	else if(std::string("/nodestatus")==url){
-		//addr、port、currtaskid、currtaskname、currtaskstate、waitingtaskcount等。
-		return;
+	string full_path = strServDir + url;
+	string ext = url.substr(url.rfind(".")+1);
+	transform(ext.begin(),ext.end(),ext.begin(),tolower);
+	string strMime = Mime::ext2mime(ext);
+	if(!strMime.empty()){
+		response->addHeader("Content-Type",strMime.c_str());
 	}
-	else if(std::string("/addtask")==url){
-		string type = request->getParamValue("type");
-		string taskname = request->getParamValue("name");
-
-		NodeClientMap::UpdateNode(request->getClientIP(),"0","",taskname,"",0);
-		response->appendContent("['addtask',0,1234,'task added!']");
-		return;
-	}
-	else if(url=="/getstatus"){
-		string status = NodeClientMap::ToJson();
-		response->appendContent(status.c_str());
-		return;
-	}
-	else if('/'==*url.rbegin()){
-		string strRes;
-		string strDir = strServDir + url;
-		findFile(strDir.c_str(),strRes);
-		RespMsg(response,strRes);
-		return;
-	}
-	else if(std::string("/dir")==url){
-		string strPath = request->getParamValue("path");
-		string strRes;
-		string strDir = strServDir + url;
-		findFile(strDir.c_str(),strRes);
-		RespMsg(response,strRes);
-		return;
-	}
-
-	else if(std::string("/test")==url){
-		std::string strApiUrl = "http://localhost:8080/status";
-		httpPost hp(strApiUrl.c_str());
-		hp.init();
-		hp.doGet();
-		std::string strRes = hp.getResult();
-		std::cout<<strRes<<std::endl;
-		response->appendContent(strRes.c_str());
-		return;
-	}
-
-	else if(std::string("/status")==url){
-		if(request->getParamValue("name")){
-			string strName = request->getParamValue("name");
-			if(string("mem")==strName){
-				RespJson(response,SysData::GetMem());
-				return;
-			}
-		}
-		string strRes;
-		strRes += "<table>";
-		strRes += "<tr><td>CPU:</td><td>" + SysData::GetCpu() + "</td></tr>";
-		strRes += "<tr><td>LAN:</td><td>" + SysData::GetLan() + "</td></tr>";
-		strRes += "<tr><td>MAC:</td><td>" + SysData::GetMac() + "</td></tr>";
-		strRes += "<tr><td>MEM:</td><td><span id='mem'>" + SysData::GetMem() + "</span></td></tr>";
-		strRes += "<tr><td>SYS:</td><td>" + SysData::GetOperaSystem() + "</td></tr>";
-		strRes += "<tr><td>SCR:</td><td>" + SysData::GetScreen() + "</td></tr>";
-		strRes += "</table>";
-
-		string strHead = "<script type=\"text/javascript\" src=\"/static/js/jquery-1.3.2.min.js\"></script>";
-		strHead += "<script type=\"text/javascript\" src=\"/static/jtimer.js\"></script>";
-
-		RespMsg(response,strRes,strHead);
-		return;
-	}
-	//else{
-		string full_path = strServDir + url;
-		string ext = url.substr(url.rfind(".")+1);
-		transform(ext.begin(),ext.end(),ext.begin(),tolower);
-		string strMime = Mime::ext2mime(ext);
-		if(!strMime.empty()){
-			response->addHeader("Content-Type",strMime.c_str());
-		}
-		const char *fid = request->getParamValue("fid");
-		const char *pos = request->getParamValue("pos");
-		const char *size = request->getParamValue("size");
-		int iPos = 0;
-		unsigned int iSize = -1;
-		if(pos){
-			iPos = atoi(pos);
-			iSize = atoi(size);
-			if (iPos<0 || iSize<=0)
-			{
-				RespMsg(response,"文件位置或大小参数错误！");
-				return;
-			}
-		}
-		//////////////////////////////////////////////////////////////////////////
-		//打开文件
-		//////////////////////////////////////////////////////////////////////////
-		std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
-		if (!is)
+	const char *fid = request->getParamValue("fid");
+	const char *pos = request->getParamValue("pos");
+	const char *size = request->getParamValue("size");
+	int iPos = 0;
+	unsigned int iSize = -1;
+	if(pos){
+		iPos = atoi(pos);
+		iSize = atoi(size);
+		if (iPos<0 || iSize<=0)
 		{
-			RespMsg(response,"file not found!");
+			RespMsg(response,"文件位置或大小参数错误！");
 			return;
 		}
-
-		is.seekg(iPos);
-		if(is.eof() || is.fail())  //fuck,seekg居然连个返回false都不做
-		{
-			RespMsg(response,"file error!");
-			return;
-		}		
-		//发送数据体
-		unsigned int iLeftSize = iSize;
-		while (iLeftSize>0)
-		{
-			int iReadSize = is.read(m_pBuffer, min(iLeftSize,c_iBUFFER_SIZE)).gcount();
-			iLeftSize -= iReadSize;
-			if(iReadSize <= 0)
-			{
-				break;
-			}
-			response->appendContent(m_pBuffer, iReadSize);
-		}
+	}
+	//////////////////////////////////////////////////////////////////////////
+	//打开文件
+	//////////////////////////////////////////////////////////////////////////
+	std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
+	if (!is)
+	{
+		RespMsg(response,"file not found!");
 		return;
-	//}
+	}
+
+	is.seekg(iPos);
+	if(is.eof() || is.fail())  //fuck,seekg居然连个返回false都不做
+	{
+		RespMsg(response,"file error!");
+		return;
+	}		
+	//发送数据体
+	unsigned int iLeftSize = iSize;
+	while (iLeftSize>0)
+	{
+		int iReadSize = is.read(m_pBuffer, min(iLeftSize,c_iBUFFER_SIZE)).gcount();
+		iLeftSize -= iReadSize;
+		if(iReadSize <= 0)
+		{
+			break;
+		}
+		response->appendContent(m_pBuffer, iReadSize);
+	}
+	return;
 }
 
 void UploadHandler::ReturnEmptyBlock( SP_HttpResponse * response, const MD5 &fid, int iPos)

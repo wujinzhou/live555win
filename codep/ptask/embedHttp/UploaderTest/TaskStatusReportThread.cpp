@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-#include "httppost.h"
+#include "httpCpp.h"
 
 TaskStatusReportThread::TaskStatusReportThread(const string &disturl,const string &baseinfo)
 {
@@ -25,11 +25,12 @@ void *TaskStatusReportThread::Thread(){
 
 	return NULL;
 	while(true){
-		std::string strApiUrl = "http://localhost:8080/status";
-		httpPost hp(strApiUrl.c_str());
-		hp.init();
-		hp.doGet();
-		std::string strRes = hp.getResult();
+		//std::string strApiUrl = "http://localhost:8080/status";
+		//httpPost hp(strApiUrl.c_str());
+		//hp.init();
+		//hp.doGet();
+		//std::string strRes = hp.getResult();
+		std::string strRes = httpCpp::httpget("http://localhost:8080/status");
 		std::cout<<strRes<<std::endl;
 		Sleep(10*1000);
 	}

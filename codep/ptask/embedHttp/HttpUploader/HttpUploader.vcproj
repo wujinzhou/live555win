@@ -5,7 +5,6 @@
 	Name="HttpServer"
 	ProjectGUID="{F83D5027-FD1E-435A-897E-8A1EC8AE3219}"
 	RootNamespace="BufferMap"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -64,8 +63,6 @@
 				IgnoreDefaultLibraryNames="libc.lib,libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="../lib/debug/$(ProjectName).lib"
 			/>
 			<Tool
@@ -85,6 +82,9 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -133,8 +133,6 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\Release\$(ProjectName).dll"
 				AdditionalLibraryDirectories="../../../lib/release/"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				ImportLibrary="../../lib/Release/$(TargetName).lib"
 			/>
 			<Tool
@@ -156,6 +154,9 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -169,14 +170,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\CpuMonitor.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\CpuUstage.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ErrorCode.cpp"
 				>
 			</File>
@@ -189,11 +182,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Common\Thread\win32\jmutex.cpp"
+				RelativePath="..\..\Common\Thread\win32\jmutex.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\Common\Thread\win32\jthread.cpp"
+				RelativePath="..\..\Common\Thread\win32\jthread.cpp"
 				>
 			</File>
 			<File
@@ -213,14 +206,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SysData.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\TaskStatusReportThread.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\UploadHandler.cpp"
 				>
 			</File>
@@ -231,19 +216,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\CpuMonitor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\CpuUstage.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ErrorCode.h"
-				>
-			</File>
-			<File
-				RelativePath=".\httpPost.h"
 				>
 			</File>
 			<File
@@ -259,15 +232,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Common\Thread\jmutex.h"
+				RelativePath="..\..\Common\Thread\jmutex.h"
 				>
 			</File>
 			<File
-				RelativePath="..\Common\Thread\jmutexautolock.h"
+				RelativePath="..\..\Common\Thread\jmutexautolock.h"
 				>
 			</File>
 			<File
-				RelativePath="..\Common\Thread\jthread.h"
+				RelativePath="..\..\Common\Thread\jthread.h"
 				>
 			</File>
 			<File
@@ -287,14 +260,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SysData.h"
-				>
-			</File>
-			<File
-				RelativePath=".\TaskStatusReportThread.h"
-				>
-			</File>
-			<File
 				RelativePath=".\UploadHandler.h"
 				>
 			</File>
@@ -305,10 +270,6 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
-		<File
-			RelativePath="..\UploaderTest\UploaderTest.vcproj"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
