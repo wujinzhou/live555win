@@ -197,6 +197,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GFunction.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\httpCpp.cpp"
 				>
 			</File>
@@ -241,6 +245,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Task.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\TaskHandler.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\TaskStatusReportThread.cpp"
 				>
 			</File>
@@ -276,6 +288,10 @@
 			</File>
 			<File
 				RelativePath=".\ErrorCode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GFunction.h"
 				>
 			</File>
 			<File
@@ -320,6 +336,14 @@
 			</File>
 			<File
 				RelativePath=".\SysData.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Task.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TaskHandler.h"
 				>
 			</File>
 			<File
