@@ -7,7 +7,7 @@ Task &Task::CreateTask(int type,const string &param1,const string &param2,
 					   int state,const string &detail)
 {
 	Task task;
-	task.id = m_mapTask.size() + 1;
+	task.id = (int)m_mapTask.size() + 1;
 	task.iType  = type;
 	task.param1 = param1;
 	task.param2 = param2;

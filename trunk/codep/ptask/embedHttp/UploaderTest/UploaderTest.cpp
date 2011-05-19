@@ -48,40 +48,26 @@ void handlerGetStatus(SP_HttpRequest * request, SP_HttpResponse * response){
 		response->appendContent(status.c_str());
 		return;
 	}
-void handlerStatus(SP_HttpRequest * request, SP_HttpResponse * response){
-		if(request->getParamValue("name")){
-			string strName = request->getParamValue("name");
-			if(string("mem")==strName){
-				HttpHelper::RespJson(response,SysData::GetMem());
-				return;
-			}
+void handlerServerStatus(SP_HttpRequest * request, SP_HttpResponse * response){
+	if(request->getParamValue("name")){
+		string strName = request->getParamValue("name");
+		if(string("mem")==strName){
+			HttpHelper::RespJson(response,SysData::GetMem());
+			return;
 		}
-		string strRes;
-		strRes += "<table>";
-		strRes += "<tr><td>CPU:</td><td>" + SysData::GetCpu() + "</td></tr>";
-		strRes += "<tr><td>LAN:</td><td>" + SysData::GetLan() + "</td></tr>";
-		strRes += "<tr><td>MAC:</td><td>" + SysData::GetMac() + "</td></tr>";
-		strRes += "<tr><td>MEM:</td><td><span id='mem'>" + SysData::GetMem() + "</span></td></tr>";
-		strRes += "<tr><td>SYS:</td><td>" + SysData::GetOperaSystem() + "</td></tr>";
-		strRes += "<tr><td>SCR:</td><td>" + SysData::GetScreen() + "</td></tr>";
-		strRes += "</table>";
-
-		string strHead = "<script type=\"text/javascript\" src=\"/static/js/jquery-1.3.2.min.js\"></script>";
-		strHead += "<script type=\"text/javascript\" src=\"/static/jtimer.js\"></script>";
-
-		HttpHelper::RespMsg(response,strRes,strHead);
-		return;
 	}
+}
 
 bool TestHTTP()
 {
 	HttpUploader uploader;
 	uploader.StartServ();
-	uploader.AddUrlHandler("/fetch",testHandler);
-	uploader.AddUrlHandler("/test",handlerTestIp);
 	uploader.AddUrlHandler("/addtask",handlerAddTask);
 	uploader.AddUrlHandler("/getstatus",handlerGetStatus);
-	uploader.AddUrlHandler("/status",handlerStatus);
+	uploader.AddUrlHandler("/serverstatus",handlerServerStatus);
+
+	uploader.AddUrlHandler("/fetch",testHandler);
+	uploader.AddUrlHandler("/test",handlerTestIp);
 
 	getchar();
 	return true;
