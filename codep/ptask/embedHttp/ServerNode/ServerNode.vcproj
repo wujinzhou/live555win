@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="ServerNode"
-	ProjectGUID="{A00572F5-FDF0-43EF-84DA-3430D0694AB0}"
+	ProjectGUID="{A154C77E-CE68-4B80-BE3A-688E81A1E7DB}"
 	RootNamespace="ServerNode"
 	Keyword="Win32Proj"
 	>
