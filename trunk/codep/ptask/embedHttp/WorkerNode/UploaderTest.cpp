@@ -58,10 +58,14 @@ void handlerServerStatus(SP_HttpRequest * request, SP_HttpResponse * response){
 	}
 }
 
+void handlerMain(SP_HttpRequest * request, SP_HttpResponse * response){
+}
+
 bool TestHTTP()
 {
 	HttpUploader uploader;
 	uploader.StartServ();
+	uploader.AddUrlHandler("/",handlerMain);
 	uploader.AddUrlHandler("/addtask",handlerAddTask);
 	uploader.AddUrlHandler("/getstatus",handlerGetStatus);
 	uploader.AddUrlHandler("/serverstatus",handlerServerStatus);
