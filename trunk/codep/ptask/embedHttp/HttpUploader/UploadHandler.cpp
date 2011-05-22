@@ -32,7 +32,7 @@ const string GetExePath(){
 	return szFilePath;
 }
 
-const string strServDir = GetExePath() + "website";
+//const string strServDir = GetExePath() + "website";
 
 UploadHandler::UploadHandler(HttpUploader *pUploader)
 {	
@@ -113,7 +113,8 @@ void UploadHandler::handle( SP_HttpRequest * request, SP_HttpResponse * response
 	if(std::string("/")==url){
 		url = "/index.htm"; //url÷ÿ∂®œÚ
 	}
-	string full_path = strServDir + url;
+	//string full_path = strServDir + url;
+	string full_path = m_strPath + url;
 	string ext = url.substr(url.rfind(".")+1);
 	transform(ext.begin(),ext.end(),ext.begin(),tolower);
 	string strMime = Mime::ext2mime(ext);
@@ -190,4 +191,9 @@ void UploadHandler::addHandler( const char *url,pHttpHandler handler )
 	m_mapHandler.insert(T_mapHandler::value_type(url,handler));
 }
 
+void UploadHandler::setHomePath( const char *path)
+{
+	m_strPath = path;
+}
+string UploadHandler::m_strPath = GetExePath() + "website";
 UploadHandler::T_mapHandler UploadHandler::m_mapHandler;

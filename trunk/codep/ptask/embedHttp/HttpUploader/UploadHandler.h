@@ -36,7 +36,9 @@ private:
 
 public:
 	static void addHandler(const char *url,pHttpHandler handler);
+	static void setHomePath(const char *path);
 	typedef std::map<std::string,pHttpHandler> T_mapHandler;
 private:
 	static T_mapHandler m_mapHandler;
+	static string m_strPath;
 };

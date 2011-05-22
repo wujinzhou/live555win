@@ -41,6 +41,11 @@ IFileMng * HttpUploader::GetFileMng()
 	return m_pFileMng;
 }
 
+void HttpUploader::setHomePath(const char *strPath)
+{
+	UploadHandler::setHomePath(strPath);
+}
+
 void HttpUploader::addHandler( const char *url,pfunHandler handler )
 {
 }

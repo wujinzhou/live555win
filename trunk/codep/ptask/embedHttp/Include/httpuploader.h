@@ -43,6 +43,7 @@ public:
 
 
 	void addHandler(const char *url,pfunHandler handler);
+	void setHomePath(const char *path);
 
 	IFileMng *GetFileMng();
 private:
