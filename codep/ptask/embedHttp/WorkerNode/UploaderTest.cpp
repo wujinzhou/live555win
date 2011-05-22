@@ -58,14 +58,33 @@ void handlerServerStatus(SP_HttpRequest * request, SP_HttpResponse * response){
 	}
 }
 
-void handlerMain(SP_HttpRequest * request, SP_HttpResponse * response){
+string g_strServerNode = "http://127.0.0.1:8080";
+void setServerNode(SP_HttpRequest * request, SP_HttpResponse * response){
+	string path = HttpHelper::SafeGetParam(request,"path");
+	if(path.size()<=0){
+		response->appendContent("['error']");
+		return;
+	}
+	g_strServerNode = path;
+	response->appendContent("['succeed']");
+	return;
 }
+
+
+const string GetExePath(){
+	char szFilePath[MAX_PATH + 1]={0};
+	GetModuleFileName(NULL, szFilePath, MAX_PATH);
+	(strrchr(szFilePath, ('\\')))[1] = 0;//删除文件名，只获得路径字串
+	return szFilePath;
+}
+
 
 bool TestHTTP()
 {
 	HttpUploader uploader;
+	uploader.setHomePath((GetExePath() + "workernode").c_str());
 	uploader.StartServ();
-	uploader.AddUrlHandler("/",handlerMain);
+	uploader.AddUrlHandler("/setservernode",setServerNode);
 	uploader.AddUrlHandler("/addtask",handlerAddTask);
 	uploader.AddUrlHandler("/getstatus",handlerGetStatus);
 	uploader.AddUrlHandler("/serverstatus",handlerServerStatus);

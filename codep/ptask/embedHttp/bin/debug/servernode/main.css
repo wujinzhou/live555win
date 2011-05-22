@@ -1,0 +1,43 @@
+body{
+background:#fff;
+margin:0px;
+}
+#version{
+font-size:12px;
+color:red;
+}
+.content{
+padding:10px;
+}
+.box{
+border:1px solid RGB(150,150,150);
+margin:0px auto 10px auto;
+width:80%;
+}
+.title{
+background:RGB(150,150,150);
+font-weight: bolder;
+height:25px;
+}
+.div_head{
+background:RGB(100,100,150);
+margin:0px;
+padding:1px 10px;
+}
+.div_footer{
+clear:both; 
+height:40px; 
+margin-top:15px; 
+padding-top:15px; 
+text-align:center; 
+border-top:1px solid #CCC;
+}
+#btnStart{
+width:200px;
+}
+#inputFile{
+width:300px;
+}
+#span_res{
+color:red;
+}
