@@ -23,7 +23,7 @@ void mytest::Split()
 
 	char* argv[] = {"d:\\test2.flv" , "d:\\t1.flv" , "d:\\t2.flv"};
 
-	core.encoder("d:\\test2.flv" , "d:\\t1.flv" ,0,90,"720x480",700000,"d:\\ffpresets\\libx264-fast.ffpreset",3);
+	core.encoder("d:\\1.mp4" , "d:\\ÁªÏët1.flv" ,0,90,"720x480",700000,"d:\\ffpresets\\libx264-fast.ffpreset",3);
 }
 void mytest::combination()
 {
