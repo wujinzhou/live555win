@@ -34,7 +34,7 @@ bool AvCore::encoder(char* inFile,char* outFiles,int ibegin,int iDuration,char* 
 	av_setFileCallBack = (FUN_setFileCallBack) myLib.resolve("setFileCallBack"); 
 	av_ffmpegMain = (FUNC_ffmpegMain) myLib.resolve("ffmpegMain");  
 	{
-		QString arg = QString("ffmpeg.exe -threads %1 -ss %2 -t %3 -i %4 -f flv -vcodec libx264 -s %5 -fpre %6 %7 r")\
+		QString arg = QString::fromLocal8Bit("ffmpeg.exe -threads %1 -ss %2 -t %3 -i %4 -f flv -vcodec libx264 -s %5 -fpre %6 %7")\
 			.arg(ithreads).arg(ibegin).arg(iDuration).arg(inFile).arg(size).arg(ffpreset).arg(outFiles);
 
 		QStringList str;
@@ -43,7 +43,7 @@ bool AvCore::encoder(char* inFile,char* outFiles,int ibegin,int iDuration,char* 
 		QByteArray *  pdata = new QByteArray[str.size()];
 		for (int i = 0;i<str.size();i++)
 		{
-			pdata[i] = str.at(i).toLatin1();
+			pdata[i] = str.at(i).toUtf8();
 			argc[i]  = pdata[i].data();
 			qDebug("%s",argc[i]);
 		}
